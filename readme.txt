@@ -10,12 +10,4 @@
 
 7777777777777777777777
 
-9999999999999
 
-<<<<<<< HEAD
-sdfjsdnfjksdbngj
-=======
-sdfjsdnfjksdbngj
-
-lalalalalalalalalalalala
->>>>>>> fenzhi1
