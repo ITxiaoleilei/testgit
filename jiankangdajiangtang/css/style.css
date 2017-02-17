@@ -1,0 +1,343 @@
+/*公用样式*/
+html{margin:0;padding:0;font-size: 100%;}
+html, body, form, p, div, h1, h2, h3, h4, h5, h6{-webkit-text-size-adjust:none;-moz-text-size-adjust:none;-o-text-size-adjust:none;}
+body{margin:0;padding:0; width:100%;font-size:15px;font-family: "苹方",'Microsoft YaHei',"STHeiti",arial,helvetica,sans-serif;}
+ul,li,h1,h2,h3,h4,h5,h6,p{padding:0;margin:0; list-style:none;font-weight:normal;}
+a{ text-decoration:none;outline:none;}
+a img,img{border:0;}
+img{ display: block;width: 100%;}
+.clear{clear:both;height:0px;}
+.page_wrap{ width:100%;margin:0 auto;overflow:hidden;min-width: 320px;max-width: 768px;}
+.main{
+	width: 100%;
+    min-width: 320px;
+    max-width: 768px;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+	bottom:2.4rem;
+    overflow-y: scroll;
+}
+.header_xq16390{
+	height: 0.86rem;
+	width: 100%;
+	background-color: #3FA1FE;
+    position: relative;
+    overflow: hidden;
+}
+.header_xq16390 .fanhui{
+	width: 1.2rem;
+	height: 0.86rem;
+	float: left;
+}
+.header_xq16390 .fanhui a{
+    z-index: 999;
+    float: right;
+    height: 0.86rem;
+    line-height: 0.86rem;
+    background: url(img/fanhui.png) no-repeat left 55%;
+    background-size: 20%;
+    font-size: 0.32rem;
+    color: #FFFFFF;
+    padding-left: 0.34rem;
+}
+.header_xq16390 .head_title{
+	height: 0.86rem;
+	line-height: 0.86rem;
+	font-size: 0.38rem;
+	/*font-weight:bold;*/
+	color: #ffffff;
+	width: 35%;
+	margin:0 auto; 
+}
+.banner_xq16390{
+	width: 100%;
+	margin:2px 0;
+}
+.shipin_xq16390{
+	width: 100%;
+	overflow: hidden;
+}
+.md_xq16390{width: 94%; margin: 0 auto;padding-top:0.1rem; }
+.md_xq16390 .md_hd{
+	width: 100%;
+	border-bottom: 1px solid #CCCCCC;
+}
+.md_xq16390 .md_hd .mh_title{
+    font-size: 0.34rem;
+    color: #078DE0;
+    font-weight: bold;
+    display: inline-block;
+    border-bottom: 3px solid #299FF4;
+    position: relative;
+    bottom: -1px;
+}
+.md_xq16390 .md_bd {
+    width: 100%;
+    overflow: hidden;
+}
+.ind_brief_xq16390{
+	width: 100%;
+}
+.ind_brief_xq16390 p{
+	text-indent:2em;
+	font-size: 0.28rem;
+	color: #1A1A1A;
+	line-height: 0.48rem;
+	padding:0.1rem 0;
+}
+.more_btnbox {
+    clear: both;
+    overflow: hidden;
+}
+.more_btnbox .more_btn_loading {
+    clear: both;
+    margin: 0.36rem 0 0 0;
+    text-align: center;
+    font-size: 0;
+}
+.more_btnbox .loadingbtn {
+    display: inline-block;
+    height: 0.64rem;
+    width: 100%;
+    overflow: hidden;
+    font-size: 0.24rem;
+    color: #999999;
+    text-align: center;
+}
+.ind_pinglun_xq16390 {
+    width: 100%;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.ind_pinglun_xq16390 ul li {
+    border-bottom: 1px solid #E5E5E5;
+    padding: 0.3rem 0;
+}
+.ind_pinglun_xq16390 ul li .nicheng {
+    float: left;
+    color: #8E8E8E;
+    font-size: 0.3rem;
+    line-height: 0.3rem;
+    margin-bottom: 0.24rem;
+}
+.ind_pinglun_xq16390 ul li .date {
+    float: right;
+    color: #999999;
+    font-size: 0.22rem;
+    line-height: 0.26rem;
+    margin-bottom: 0.14rem;
+}
+.ind_pinglun_xq16390 ul li .content {
+    color: #000000;
+    font-size: 0.3rem;
+    line-height: 0.4rem;
+    color: #191919;
+}
+.ind_pinglun_xq16390 .more_box {
+    width: 100%;
+}
+.ind_pinglun_xq16390 .more_box .btn_more {
+    text-align: center;
+    font-size: 0;
+}
+.ind_pinglun_xq16390 .more_box .btn_more p {
+    display: inline-block;
+    font-size: 0.33rem;
+    color: #299FF4;
+    line-height: 0.33rem;
+    background: url(img/btn_xia_xq16390.png) no-repeat right center;
+    background-size: 0.36rem;
+    padding: 0.42rem 0 0.36rem;
+    padding-right: 0.44rem;
+}
+
+
+.ind_liuyan_xq16390 {
+    width: 100%;
+    min-width: 320px;
+    max-width: 768px;
+    overflow: hidden;
+    height: 1rem;
+    background: #5C5C5C;
+    position: fixed;
+    bottom: 1.36rem;
+    z-index: 998;
+}
+.ind_liuyan_xq16390 .inputearea {
+    float: left;
+    width: 76.875%;
+    height: 0.58rem;
+    padding-left: 0.16rem;
+    line-height: 0.58rem;
+    background: #FFFFFF;
+    margin-top: 0.21rem;
+    margin-left: 0.12rem;
+    color: #7F7F7F;
+    font-size: 0.3rem;
+}
+.ind_liuyan_xq16390 .btn_share {
+    float: right;
+    width: 9.375%;
+    height: 0.6rem;
+    margin-top: 0.2rem;
+    margin-right: 0.22rem;
+    background: url(img/btn_share_xq16390.png) no-repeat center center;
+    background-size: 0.6rem;
+}
+.ind_liuyantext_xq16390 {
+    display: none;
+    width: 100%;
+    min-width: 320px;
+    max-width: 768px;
+    height: 1rem;
+    background: #5C5C5C;
+    position: fixed;
+    bottom: 1.36rem;
+    z-index: 998;
+    
+}
+.ind_liuyantext_xq16390 input {
+    float: left;
+    width: 76.875%;
+	height:0.38rem;
+	line-height:0.38rem;
+	padding:0 0;
+	border:none;
+    padding-left: 0.16rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    background: #fff;
+    margin-left: 0.12rem;
+	margin-top: 0.21rem;
+    color: #7F7F7F;
+    font-size: 0.3rem;
+}
+.ind_liuyantext_xq16390 .btn_pinglun {
+    text-align: center;
+    float: right;
+    width: 0.98rem;
+    height: 0.58rem;
+	margin-top: 0.21rem;
+    margin-right: 0.12rem;
+    line-height: 0.58rem;
+    background: #D7D7D7;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 0.24rem;
+}
+.ind_liuyantext_xq16390 .btn_pinglun.cur {
+    background-color: #E5383C;
+}
+.pingluntanceng {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 3.16rem;
+    width: 4.72rem;
+    height: 0.58rem;
+    margin-left: -2.36rem;
+    background-color: #494949;
+    z-index: 999;
+}
+.pingluntanceng span {
+    margin-left: 0.22rem;
+    display: block;
+    background: url(http://p1.img.cctvpic.com/photoAlbum/templet/common/DEPA1485238537261278/btn_duigou_xq15529.png) no-repeat left center;
+    background-size: 0.48rem;
+    padding-left: 0.54rem;
+    color: #fff;
+    font-size: 0.24rem;
+    line-height: 0.58rem;
+}
+.pingluntanceng2 {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 3.16rem;
+    width: 4.72rem;
+    height: 0.58rem;
+    margin-left: -2.36rem;
+    background-color: #494949;
+    z-index: 999;
+}
+.pingluntanceng2 span {
+    margin-left: 0.22rem;
+    display: block;
+    background: url(http://p1.img.cctvpic.com/photoAlbum/templet/common/DEPA1485238537261278/btn_duigou_xq15529.png) no-repeat left center;
+    background-size: 0.48rem;
+    padding-left: 0.54rem;
+    color: #fff;
+    font-size: 0.24rem;
+    line-height: 0.58rem;
+}
+/*分享相关内容*/
+.ind_share_xq16390{
+	display: none;
+    width: 100%;
+    min-width: 320px;
+    max-width: 768px;
+    overflow: hidden;
+    background-color: #494949;
+    overflow: hidden;
+    position: fixed;
+    bottom: 2.36rem;
+    z-index: 999;
+}
+.ind_share_xq16390 .share_title{margin-top:0.13rem;position:relative;}
+.ind_share_xq16390 .share_title span{
+	display: block;
+    padding-left: 0.12rem;
+    color: #FFFFFF;
+    font-size: 0.24rem;
+    line-height: 0.44rem;
+}
+.ind_share_xq16390 .share_title .btn_guanbi{
+	position: absolute;
+    top: 0;
+    right: 0;
+    width: 0.44rem;
+    height: 0.44rem;
+    background: url(http://p1.img.cctvpic.com/photoAlbum/templet/common/DEPA1485238537261278/btn_guanbi_xq15529.png) no-repeat center center;
+    background-size: 0.44rem;
+}
+.ind_share_xq16390 .sharebtn{width:100%;margin:0 auto;}
+.ind_share_xq16390 .sharebtn ul{
+	width: 100%;
+    margin-top: 0.22rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: 0;
+}
+.ind_share_xq16390 .sharebtn ul li{width:17.1875%;display: inline-block;text-align:center;}
+.ind_share_xq16390 .sharebtn ul li a{width:100%;}
+.ind_share_xq16390 .sharebtn ul li a .img{width:63.63%;margin:0 auto;}
+.ind_share_xq16390 .sharebtn ul li a .img img{display:block;width:100%;}
+.ind_share_xq16390 .sharebtn ul li a p{
+	margin: 0.16rem 0;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 0.21rem;
+    line-height: 0.21rem;
+}
+
+.footer {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    background-color: #3FA1FE;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 768px;
+    z-index: 998;
+}
+.footer p {
+    text-align: center;
+    font-size: 0.24rem;
+}
+.footer p a {
+    color: #FCFCFC;
+    line-height: 0.34rem;
+    margin: 0 0.16rem;
+}
