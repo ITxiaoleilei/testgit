@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>健康大讲堂</title>
+<meta name="keywords" content="手机央视网" />
+<meta name="description" content="手机央视网"/>
+<meta content="telephone=no" name="format-detection" />
+<script src="http://p1.img.cctvpic.com/photoAlbum/templet/common/DEPA1424933607444705/zepto.min.js"></script>
+<link type="text/css" rel="stylesheet" href="css/style.css">
+<script type="text/javascript">
+	function refresh(){
+		var deviceWidth = document.documentElement.clientWidth;
+		if(deviceWidth>768){
+			document.documentElement.style.fontSize=768/7.68+"px";
+		}else{
+			if(deviceWidth<320){
+				document.documentElement.style.fontSize=320/7.68+"px";
+			}else{
+				document.documentElement.style.fontSize=deviceWidth/7.68+"px";
+			}
+		}
+		fontSize=$("html").css("font-size").split("px")[0];
+	}
+	refresh();
+	$(window).resize(function() {
+		refresh();
+	});
+</script>
+<script type="text/javascript" src="http://js.player.cntv.cn/creator/live_common.js"></script>
+<script type="text/javascript" src="http://js.player.cntv.cn/creator/swfobject.js"></script>
+</head>
+<body>
+<div class="page_wrap">	
+	<div class="main">
+	<!-- <header class="header_xq16390">
+		<div class="fanhui">
+			<a href="javascript:history.go(-1)">返回</a>
+		</div>
+		<div class="head_title">健康大讲堂直播</div>
+	</header> -->
+	<h2>测试测试</h2>
+	<div class="banner_xq16390">
+		<img src="images/image1.jpg">
+	</div>
+	<div class="shipin_xq16390">
+		<div id="videobox"></div> 
+	</div>
+	<script type="text/javascript">
+		var zhiboshipinW=window.innerWidth || screen.width;
+		zhiboshipinW=zhiboshipinW>768?768:zhiboshipinW;
+		zhiboshipinW=zhiboshipinW<320?320:zhiboshipinW;
+		var zhiboshipinH=zhiboshipinW*9/16;
+		var isAutoPlay = "true";
+		var channel_name="cctv5";
+		var attributes = {
+		video_width: zhiboshipinW,	/* Flash播放器宽度 */
+		video_height: zhiboshipinH,	/* Flash播放器高度 */
+		video_channel_name: channel_name	/* Flash播放器及ipad 使用的直播流名称 */};
+		createFlashLivePlayer("videobox", attributes["video_width"], attributes["video_height"], attributes["video_channel_name"]);
+		function zhiboChange(){
+			zhiboshipinW=window.innerWidth || screen.width;
+			zhiboshipinW=zhiboshipinW>768?768:zhiboshipinW;
+			zhiboshipinW=zhiboshipinW<320?320:zhiboshipinW;
+			zhiboshipinH=zhiboshipinW*9/16;
+			$("#videobox").css({"width":zhiboshipinW+"px","height":zhiboshipinH+"px"});
+			$("#html5VideoBack").css({"width":zhiboshipinW+"px"});
+			$("#html5VideoBack").css("height",zhiboshipinH+"px");
+			$("#html5Player").css({"width":zhiboshipinW+"px"});
+			$("#html5Player").css("height",zhiboshipinH+"px");
+			$("#html5ControlDiv").css({"width":zhiboshipinW+"px"});
+			$("#html5ControlDiv").css("height",zhiboshipinH+"px");
+		}
+		$(window).resize(function(){
+			zhiboChange();
+		})
+	</script>
+	<div style="height:0.1rem;"></div>
+	<div class="md_xq16390">		
+		<div class="md_hd">
+			<span class="mh_title">直播简介</span>			
+		</div>		
+		<div class="md_bd">
+			<div class="ind_brief_xq16390">
+				<p>近日，2016年中国脑卒中大会暨第六届全国心脑血管病论坛开幕式在北京召开。大会由国家卫计委医政管理局副局长郭燕红主持，全国人大科教文卫委员会、国家卫生计生委脑防委副主任、大会学术主席王陇德院士，国家卫生计生委常吉乐检查专员</p>
+			</div>			
+		</div> 
+	</div>
+	<div class="md_xq16390">		
+		<div class="md_hd">
+			<span class="mh_title">留言区</span>			
+		</div>		
+		<div class="md_bd">
+			<div class="ind_pinglun_xq16390" id="biankanbianliao">
+				<div class="more_btnbox" id="j_pullLoader">
+					<div class="more_btn_loading " id="j_loading">
+						<span class="loadingbtn">服务器正在加载,请稍后...</span>
+					</div>
+				</div> 
+				<ul id="biankanbianliaodata"></ul>
+				<div class="more_box">
+					<div class="btn_more"><p>查看更多评论</p></div>
+				</div>
+			</div>	
+			<script type="text/javascript">
+			var sPage = 1;
+			var sPageSize = 10;
+			var app='cms_jiankang';
+			var itemid='jkdjt';
+			var message='';
+			/* 边看边聊 */
+			function getBianKanBianLiaoData(sPage){	//1是下拉 2是点击跟初始化
+				var url = 'http://common.newcomment.cntv.cn/comment/list?app='+app+'&itemid='+itemid+'&itemtype=0&page='+sPage+'&prepage='+sPageSize+'&nature=1&jsonp_callback=callback';
+				$.ajax({
+					url:url,
+					dataType:"jsonp",
+					jsonp:"jsonp_callback",
+					cache:false,
+					error:function(){
+						console.log('error');
+					},
+					success:function(data){
+						$("#j_pullLoader").hide();
+						bianKanBianLiaoDataHtml(data,sPage);
+					}
+				});
+			}
+			//格式化时间字符串
+			function format(time){ 
+				var t=new Date(time*1000);
+				var year=t.getFullYear();
+				var m=checkTime(t.getMonth()+1);
+				var dd=checkTime(t.getDate());
+				var hh=checkTime(t.getHours());
+				var mm=checkTime(t.getMinutes());
+				var ss=checkTime(t.getSeconds());
+				//return m+'月'+dd+'日'+hh+':'+mm+':'+ss;
+				return m+'月'+dd+'日'+hh+':'+mm;
+			}
+			function checkTime(i) {
+				return i>=10?i:("0"+i)
+			}
+			var zongLen;
+			function bianKanBianLiaoDataHtml(data,sPage){
+				var str='';
+				var data =data.data;
+				zongLen=data.total;
+				if(data.total>sPage*10){
+					if(sPage==10){
+						$("#biankanbianliao .more_box .btn_more").html("<span>没有更多评论了</span>");
+					}else{
+						$("#biankanbianliao .more_box .btn_more").html("<p>查看更多评论</p>");
+					}
+				}else{
+					$("#biankanbianliao .more_box .btn_more").html("<span>没有更多评论了</span>");
+				}
+				var alltime= Date.parse(new Date()).toString();
+				var endtime=alltime.substring(0, 10);		
+				if (endtime == undefined){
+					endtime = 1;
+				}
+				for (var i=0;i<data.content.length ;i++ ){
+					var message =data.content[i].message;
+					var author =data.content[i].author;
+					var locale =data.content[i].locale;
+					var dateline=format(data.content[i].dateline);
+					str+='<li>';
+					str+='<div class="nicheng">'+author+'['+locale+']</div>';
+					str+='<p class="date">'+dateline+'</p>';
+					str+='<div class="clear"></div>';
+					str+='<div class="content">'+message+'</div>';
+					str+='</li>';
+				}
+				$('#biankanbianliaodata').append(str);
+			}
+			$("#biankanbianliao .more_box .btn_more").click(function(){
+				sPage++;
+				if(sPage<10){
+					if(Math.ceil(zongLen/10)==sPage){
+						$("#biankanbianliao .more_box .btn_more").unbind("click");
+					}
+				}else{
+					$("#biankanbianliao .more_box .btn_more").unbind("click");
+				}
+				getBianKanBianLiaoData(sPage);
+			})
+			$(function(){
+				getBianKanBianLiaoData(sPage);
+			})
+			</script>	
+		</div> 
+	</div>
+	</div>
+	<div class="ind_liuyan_xq16390">
+		<div class="inputearea">我来说两句</div>
+		<div class="btn_share"></div>
+		<div class="clear"></div>
+	</div>
+	<div class="ind_liuyantext_xq16390">
+		<input placeholder="我来说两句" id="mytext"></input>
+		<div class="btn_pinglun">评论</div>
+		<div class="clear"></div>
+	</div>
+	<div class="pingluntanceng"><span>评论发表成功，正在审核，请稍候</span></div>
+	<div class="pingluntanceng2"><span>请将字数控制在200字以内</span></div>
+	<script type="text/javascript">
+		//埋码
+		/*function jichu(category,action,optid,optvalue){
+			window.$AI&&$AI.trackGD(category,action,optid,optvalue);
+		}*/
+		var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";  
+		/** 
+		 * base64编码 
+		 */  
+		function base64_encode(str){  
+			var out, i, len;  
+			var c1, c2, c3;  
+			len = str.length;  
+			i = 0;  
+			out = "";  
+			while (i < len) {  
+				c1 = str.charCodeAt(i++) & 0xff;  
+				if (i == len) {  
+					out += base64EncodeChars.charAt(c1 >> 2);  
+					out += base64EncodeChars.charAt((c1 & 0x3) << 4);  
+					out += "==";  
+					break;  
+				}  
+				c2 = str.charCodeAt(i++);  
+				if (i == len) {  
+					out += base64EncodeChars.charAt(c1 >> 2);  
+					out += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));  
+					out += base64EncodeChars.charAt((c2 & 0xF) << 2);  
+					out += "=";  
+					break;  
+				}  
+				c3 = str.charCodeAt(i++);  
+				out += base64EncodeChars.charAt(c1 >> 2);  
+				out += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));  
+				out += base64EncodeChars.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >> 6));  
+				out += base64EncodeChars.charAt(c3 & 0x3F);  
+			}  
+			return out;  
+		} 
+	</script>
+	<script type="text/javascript">
+	//评论的js
+		function isNull(str){
+			if ( str == "" ) return true;
+			var regu = "^[ ]+$";
+			var re = new RegExp(regu);
+			return re.test(str);
+		}
+		function immediately(){
+			var element = document.getElementById("mytext");
+			if("\v"=="v") {
+				element.onpropertychange = webChange;
+				}else{
+				element.addEventListener("input",webChange,false);
+			}
+			function webChange(){
+				if(element.value!="" && !isNull(element.value)){
+					message = element.value;
+					$(".ind_liuyantext_xq16390 .btn_pinglun").addClass("cur btnliuyan");
+					$("#mytext").blur(function(){
+						$(".ind_liuyan_xq16390").css("display","none");
+						$(".ind_liuyantext_xq16390").css("display","block");
+						$(".ind_liuyantext_xq16390 input").val(element.value);
+					})
+				}else{
+					$(".ind_liuyantext_xq16390 .btn_pinglun").removeClass("cur"); 
+					$("#mytext").blur(function(){
+						$(".ind_liuyantext_xq16390").css("display","none");
+						$(".ind_liuyan_xq16390").css("display","block");
+						$(".ind_liuyantext_xq16390 input").blur();
+						if(isNull(element.value)){
+							$(".ind_liuyantext_xq16390 input").val("");
+						}
+						$(".ind_liuyantext_xq16390 .btn_pinglun").removeClass("cur")
+					})
+				}
+			}
+		}
+		function loadJsnew(id,newJS){
+				var oldjs = document.getElementById(id);
+				if(oldjs) oldjs.parentNode.removeChild(oldjs);
+				var scriptObj = document.createElement("script");
+				scriptObj.src = newJS;
+				scriptObj.type = "text/javascript";
+				scriptObj.id   = id;
+				document.getElementsByTagName("head")[0].appendChild(scriptObj);
+		}
+		function liuyan(){
+			var itemtype="0";
+			var time=parseInt(new Date().getTime()/1000);	  
+			var authorid="";
+			var authorid=parseInt(5000000+Math.random()*1000000);
+			var author= "央视网网友";
+			var data=encodeURI(base64_encode("uid="+authorid+"&time="+time));
+			//jichu('dzw','comment','等着我评论',message);
+			var datas= {"app":app,"itemid":itemid,"itemtype":itemtype,"time":time,"message":message,"author":author,"authorid":authorid,"data":data,"jsonp_callback":"liuyan_callback"}
+			var url=" http://newcomment.cntv.cn/comment/post?"+$.param(datas);
+			var scriptid="liuyan_callback";
+			loadJsnew(scriptid,url);
+		}
+		function liuyan_callback(){
+		 $("#mytext").val("");
+		}
+		$(".btnliuyan").live("click",function(){
+			if(message.length>200){
+				
+			}else{
+				liuyan();
+			}
+		});
+		immediately();
+		var u = navigator.userAgent;
+		var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);//判断ios系统
+		var agent = navigator.userAgent.toLowerCase() ;
+		var version;
+		if(isiOS){
+	
+		}else{
+			var geshu=0;
+			var element = document.getElementById("mytext");
+			element.addEventListener("focus",function(){
+				geshu++;
+				if(geshu==1){
+					$(".ind_liuyantext_xq16390").css({"display":"none"});
+					setTimeout(function(){
+						$(".ind_liuyantext_xq16390").css({"display":"block"});
+						$(".ind_liuyantext_xq16390 input").focus();
+					},100)
+				}
+			},false);
+		}
+		if(agent.indexOf("like mac os x") > 0){
+			var regStr_saf = /os [\d._]*/gi ;
+			var verinfo = agent.match(regStr_saf) ;
+			version = (verinfo+"").replace(/[^0-9|_.]/ig,"").replace(/_/ig,".");
+		}
+		$(".ind_liuyan_xq16390 .inputearea").click(function(){
+			$(".ind_liuyan_xq16390").css("display","none");
+			$(".ind_liuyantext_xq16390").css({"display":"block"});
+			$(".ind_liuyantext_xq16390 input").focus();
+			$("#mytext").blur(function(){
+				$(".ind_liuyantext_xq16390").css("display","none");
+				$(".ind_liuyan_xq16390").css("display","block");
+			})
+			if(/AppleWebKit.*mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SM|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
+				if(window.location.href.indexOf("?mobile")<0){
+					if(isiOS){
+						var version_str = version+"";
+						if(version_str != "undefined" && version_str.length >0){
+							version=version.substring(0,1);
+						}
+						if (version_str.indexOf("7.0")!=-1){
+							if (navigator.userAgent.indexOf('UCBrowser') > -1) {
+								$(".ind_liuyan_xq16390").css("position","fixed");
+								$(".ind_liuyantext_xq16390").css("position","absolute");
+								$(".footer").css("position","absolute");
+							}
+						}else{
+							if (navigator.userAgent.indexOf('UCBrowser') > -1) {
+								$(".ind_liuyan_xq16390").css("position","absolute");
+								$(".ind_liuyantext_xq16390").css("position","absolute");
+								$(".footer").css("position","absolute");
+							}
+						}
+					}
+				}
+			}
+		});
+
+		var pingmuWidth=window.innerWidth || screen.width;
+		$(".ind_liuyantext_xq16390 .btn_pinglun").click(function(){
+			if($(".ind_liuyantext_xq16390 .btn_pinglun").hasClass("cur")){
+				if(message.length>200){
+					$(".pingluntanceng2").css("display","block");
+					setTimeout(function(){
+						$(".pingluntanceng2").css("display","none");
+					},3000)
+				}else{
+					$(".pingluntanceng").css("display","block");
+					setTimeout(function(){
+						$(".pingluntanceng").css("display","none");
+					},3000)
+					$("#mytext").val("");
+					$(".ind_liuyantext_xq16390").css("display","none");
+					$(".ind_liuyan_xq16390").css("display","block");
+					$(".ind_liuyantext_xq16390 input").blur();
+					$(".ind_liuyantext_xq16390 .btn_pinglun").removeClass("cur");
+				}
+			}
+		})
+	</script>
+	<div class="ind_share_xq16390" id="sharefuceng">
+		<div class="share_title">
+			<span>分享到</span>
+			<div class="btn_guanbi"></div>
+		</div>
+		<div id="nativeShare"></div>
+		<div class="share_q sharebtn sns-share" id="sharebox"></div>
+	</div>
+	<script type="text/javascript">
+		function getAjaxScript(url){
+			var el = document.createElement("script");
+			el.type="text/javascript";
+			el.lang="javascript";
+			el.src = url;
+			document.getElementsByTagName("body")[0].appendChild(el);
+		}
+		//每个分享图标的数组
+		var shareData=[
+			{"dataapp":"weixinFriend",
+			"className":"nativeShare weixinpengyouquan",
+			"img":"http://p1.img.cctvpic.com/photoAlbum/templet/common/DEPA1474781287991822/btn_pengyouquan_xq15570.png",
+			"text":"朋友圈"
+			},{
+			"dataapp":"sina",
+			"className":"weibo special",
+			"img":"css/img/btn_weibo_xq16390.png",
+			"text":"微博"
+			},{
+			"dataapp":"weixin",
+			"className":"nativeShare weixin",
+			"img":"http://p1.img.cctvpic.com/photoAlbum/templet/common/DEPA1474781287991822/btn_weixin_xq15570.png",
+			"text":"微信好友"
+			},{
+			"dataapp":"qq_zone",
+			"className":"qzone special",
+			"img":"http://p1.img.cctvpic.com/photoAlbum/templet/common/DEPA1474781287991822/btn_zone_xq15570.png",
+			"text":"QQ空间"
+			},{
+			"dataapp":"QQ",
+			"className":"qq",
+			"img":"http://p1.img.cctvpic.com/photoAlbum/templet/common/DEPA1474781287991822/btn_qq_xq15570.png",
+			"text":"QQ好友"
+			}
+		];
+		//定义分享标题简介图片
+		var config = {
+			title:"分享标题",
+			content:"分享简介",
+			img:"http://p1.img.cctvpic.com/photoworkspace/contentimg/2016/04/11/2016041115062055808.jpg",
+			pcUrl:""//如果底层页title为空，需要取pc底层页中的title
+		};
+		$(".ind_liuyan_xq16390 .btn_share").click(function(){
+			//jichu('dzw','share','等着我分享',config.title);
+			$(".ind_share_xq16390").css("display","block");
+			//动态加载js
+			getAjaxScript("http://p1.img.cctvpic.com/photoAlbum/templet/common/DEPA1486541157337576/nativeShare.js");
+			pingmuWidth=window.innerWidth || screen.width;
+			if(pingmuWidth>768){
+				shareleft=(pingmuWidth-768)/2;
+				$(".ind_share_xq16390").css("left",shareleft+"px");
+			}
+		});
+		$("#sharefuceng .btn_guanbi").click(function(){
+			$("#sharefuceng").css("display","none");
+		})
+	</script>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript">
+	function onBridgeReady(){
+		WeixinJSBridge.call('hideOptionMenu');
+	}
+	if (typeof WeixinJSBridge == "undefined"){
+		if( document.addEventListener ){
+			document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+		}else if (document.attachEvent){
+			document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+			document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+		}
+	}else{
+		onBridgeReady();
+	}
+	// 微信配置
+	//Ajax
+	function getAjax(url,data,cb,spacial){
+		$.ajax({
+			url:url,
+			type:"get",
+			data:data,
+			dataType:'jsonp',
+			success: function(_data){
+				cb(_data)
+			},
+			timeout:10000,
+			error:function(){warnbox("请求超时，请检查网络或者重新刷新页面！")}
+			
+		});
+		}	
+	var data={"appid":"newstiket","url":encodeURIComponent(encodeURIComponent(window.location.href))};
+	getAjax("http://api.cntv.cn/Apicommon/index?&path=iphoneInterface/general/getWeiXinSignature.jsonp",data,weixinSucess);
+	function weixinSucess(data){	
+		wx.config({
+		debug: false, 
+		appId: "wx2723c0deaa5a97e9", 
+		timestamp: data.timestamp, 
+		nonceStr:  data.nonceStr, 
+		signature: data.signature,
+		jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 功能列表，我们要使用JS-SDK的什么功能
+		});
+	}
+
+	// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在 页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready 函数中。
+	wx.ready(function(){
+		// 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
+		wx.onMenuShareTimeline({
+			title: config.title,// 分享标题
+			link:window.location.href,
+			imgUrl:config.img// 分享图标
+		});
+		// 获取“分享给朋友”按钮点击状态及自定义分享内容接口
+		wx.onMenuShareAppMessage({
+			title: config.title, // 分享标题
+			desc: config.content, // 分享描述
+			link:window.location.href,
+			imgUrl:config.img, // 分享图标
+			type: 'link', // 分享类型,music、video或link，不填默认为link
+		});
+		onBridgeReady_OptionMenu();
+	});
+	wx.error(function(res){
+		console.log("失败");
+	});
+	function onBridgeReady_OptionMenu(){
+		WeixinJSBridge.call('showOptionMenu');
+	}
+	</script>
+	<div class="footer">	
+		<p><a href="#">手机央视网</a><a href="#">PC版</a><a href="#">用户反馈</a></p>	
+		<p><a href="#">举报电话：010-88047123</a></p>	
+		<p><a href="#">中国中央电视台</a><a href="#">中国网络电视台</a><a href="#">版权所有</a></p>	
+	</div>
+</div>
+</body>
+</html>
